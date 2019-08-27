@@ -7,6 +7,7 @@ public class EnemyWalk : MonoBehaviour
     public ThingRuntimeSet tiles;
 
     public float speed = 10f;
+    public float dist = 0.2f;
     private Transform target;
     private int wavepointIndex;
 
@@ -19,9 +20,10 @@ public class EnemyWalk : MonoBehaviour
     private void Update()
     {
         Vector3 dir = target.position - transform.position;
-        transform.Translate(dir * speed * Time.deltaTime);
 
-        if(Vector3.Distance(transform.position, target.position) <= 0.5f)
+        transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
+
+        if(Vector3.Distance(transform.position, target.position) <= dist)
         {
             GetNextWayPoint();
         }
@@ -29,6 +31,12 @@ public class EnemyWalk : MonoBehaviour
         void GetNextWayPoint()
         {
             wavepointIndex--;
+            if (wavepointIndex < 0)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
             target = tiles.Items[wavepointIndex].transform;
         }
     }

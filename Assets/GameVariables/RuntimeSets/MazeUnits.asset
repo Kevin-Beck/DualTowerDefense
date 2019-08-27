@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fed9773ebc6406349add17cf8ced570c, type: 3}
-  m_Name: MazeZ
+  m_Script: {fileID: 11500000, guid: 02dfc1f30e1aaf64caf6c7a9ba753a07, type: 3}
+  m_Name: MazeUnits
   m_EditorClassIdentifier: 
-  DeveloperDescription: 
-  Value: 20
+  Items: []

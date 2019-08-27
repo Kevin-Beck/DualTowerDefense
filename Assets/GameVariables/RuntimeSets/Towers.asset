@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f03e1f3c80b7954bb899eaa966d3e35, type: 3}
-  m_Name: Tower2
+  m_Script: {fileID: 11500000, guid: 02dfc1f30e1aaf64caf6c7a9ba753a07, type: 3}
+  m_Name: Towers
   m_EditorClassIdentifier: 
-  DeveloperDescription: 
+  Items: []

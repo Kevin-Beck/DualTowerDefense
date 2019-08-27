@@ -15,15 +15,15 @@ public class StartFinishPlacer : MonoBehaviour
 
     public void RandomizeLocations()
     {
-        start.SetValue(new Position(Random.Range(0, sizeX.Value), Random.Range(0, sizeZ)));
-        end.SetValue(new Position(Random.Range(0, sizeX.Value), Random.Range(0, sizeZ)));
+        start.SetValue(new Position(Random.Range(0, sizeX.Value/3), Random.Range(0, sizeZ/3)));
+        end.SetValue(new Position(Random.Range(sizeX.Value/3 * 2, sizeX.Value), Random.Range(sizeZ.Value/3 *2, sizeZ)));
         UpdatePositions();
     }
 
     public void UpdatePositions()
     {
-        StartMarker.transform.position = new Vector3(start.Value.X, .25f, start.Value.Z) * 4;
-        EndMarker.transform.position = new Vector3(end.Value.X, .25f, end.Value.Z) * 4;
+        StartMarker.transform.position = new Vector3(start.Value.X * 4, 5.5f, start.Value.Z * 4);
+        EndMarker.transform.position = new Vector3(end.Value.X * 4, 5.5f, end.Value.Z * 4);
     }
 
 }

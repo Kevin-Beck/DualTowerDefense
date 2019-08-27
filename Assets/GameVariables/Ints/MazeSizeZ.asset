@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f03e1f3c80b7954bb899eaa966d3e35, type: 3}
-  m_Name: Tower1
+  m_Script: {fileID: 11500000, guid: fed9773ebc6406349add17cf8ced570c, type: 3}
+  m_Name: MazeSizeZ
   m_EditorClassIdentifier: 
   DeveloperDescription: 
-  Value:
-    X: 4
-    Z: 5
+  Value: 12

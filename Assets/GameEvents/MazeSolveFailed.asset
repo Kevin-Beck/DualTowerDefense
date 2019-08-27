@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fed9773ebc6406349add17cf8ced570c, type: 3}
-  m_Name: MazeX
+  m_Script: {fileID: 11500000, guid: aa626faca7507844c87454157c5dc525, type: 3}
+  m_Name: MazeSolveFailed
   m_EditorClassIdentifier: 
-  DeveloperDescription: 
-  Value: 20

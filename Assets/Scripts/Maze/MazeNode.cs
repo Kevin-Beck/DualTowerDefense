@@ -13,6 +13,10 @@ public class MazeNode
     // east = 1
     // south = 2
     // west = 3
+    public MazeNode()
+    {
+
+    }
     public void InitializeNode(Position p)
     {
         myPos = p;

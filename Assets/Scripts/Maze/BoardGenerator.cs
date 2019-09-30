@@ -10,8 +10,9 @@ public class BoardGenerator : MonoBehaviour
     public ThingRuntimeSet towers;
     public ThingRuntimeSet mazeNodes;
     public ThingRuntimeSet pathTiles;
+    public float pathHeight;
     [SerializeField] FloatReference NodeScale;
-    [SerializeField] float NodeYvalue = 0;
+    [SerializeField] float nodeHeight = 0;
     
     public void CreateBoard()
     {
@@ -41,7 +42,7 @@ public class BoardGenerator : MonoBehaviour
         foreach (MazeNode mn in mazeData)
         {            
             GameObject go = Instantiate(BoardNodePrefab, transform);
-            go.transform.position = new Vector3(mn.myPos.X * NodeScale.Value, NodeYvalue, mn.myPos.Z * NodeScale.Value);
+            go.transform.position = new Vector3(mn.myPos.X * NodeScale.Value, nodeHeight, mn.myPos.Z * NodeScale.Value);
             BoardNode bn = go.GetComponent<BoardNode>();
 
             if (mn.walls[0] == false)
@@ -59,7 +60,7 @@ public class BoardGenerator : MonoBehaviour
         {
             GameObject go = Instantiate(PathTilePrefab, transform);
             Position p = path.Pop();
-            go.transform.position = new Vector3(p.X * NodeScale, 2.75f, p.Z * NodeScale);
+            go.transform.position = new Vector3(p.X * NodeScale, pathHeight, p.Z * NodeScale);
         }
         
         BoardCreated.Raise();

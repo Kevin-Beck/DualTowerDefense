@@ -7,7 +7,7 @@ public class TowerScript : MonoBehaviour
     [Header("Attributes")]
     public float range = 15f;
     public float turnSpeed = 10f;
-    public float fireRate = 1f;
+    public float fireRate = 10f;
     private float fireCountdown = 0f;
 
     [Header("UnitySetup")]
@@ -18,10 +18,17 @@ public class TowerScript : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform firePoint;
 
+    List<Effect> myTowerAbilities = new List<Effect>();
 
     private void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, .5f);
+        // TEMP FOR TESTING
+       // IceEffect ie = new IceEffect();        
+        FireEffect fe = new FireEffect();
+        myTowerAbilities.Add(fe);
+      //  myTowerAbilities.Add(ie);
+        // END TEMP
     }
 
     private void Update()
@@ -34,7 +41,6 @@ public class TowerScript : MonoBehaviour
         Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
 
         partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
-
 
         if(fireCountdown <= 0)
         {
@@ -53,7 +59,7 @@ public class TowerScript : MonoBehaviour
     {
         GameObject go = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Bullet bullet = go.GetComponent<Bullet>();
-
+        bullet.myAbilities = myTowerAbilities;
         if(bullet != null)
         {
             bullet.Seek(target);
@@ -77,9 +83,7 @@ public class TowerScript : MonoBehaviour
         }
 
         if (closestEnemy != null && shortestDistance <= range * range)
-        {
             target = closestEnemy.transform;
-        }
         else
             target = null;
     }

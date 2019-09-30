@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class Bullet : MonoBehaviour
 {
     public float speed = 70f;
     Transform target;
     public GameObject impactEffect;
+
+    public List<Effect> myAbilities = new List<Effect>();
 
     public void Seek(Transform _target)
     {
@@ -34,8 +37,19 @@ public class Bullet : MonoBehaviour
     void HitTarget()
     {
         GameObject effectInstance = Instantiate(impactEffect, transform.position, transform.rotation);
+        
+        ApplyEffect();
+
         Destroy(effectInstance, 2f);
         Destroy(gameObject);
+    }
 
+    void ApplyEffect()
+    {
+        Enemy e = target.gameObject.GetComponent<Enemy>();
+        foreach (Effect ta in myAbilities)
+        {
+            ta.ApplyProjectileEffect(e);
+        }
     }
 }

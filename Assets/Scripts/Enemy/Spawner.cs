@@ -10,14 +10,19 @@ public class Spawner : MonoBehaviour
 
     private int waveIndex = 0;
 
+    bool spawnActive = false;
+
     public void Update()
     {
-        if(countdown <= 0f)
+        if(spawnActive)
         {
-            StartCoroutine(SpawnWave());
-            countdown = timeBetweenWaves;
+            if (countdown <= 0f)
+            {
+                StartCoroutine(SpawnWave());
+                countdown = timeBetweenWaves;
+            }
+            countdown -= Time.deltaTime;
         }
-        countdown -= Time.deltaTime;
     }
 
     IEnumerator SpawnWave()
@@ -35,5 +40,13 @@ public class Spawner : MonoBehaviour
     {
         GameObject go = Instantiate(enemyPrefab, new Vector3(start.Value.X * 4, 5, start.Value.Z * 4), Quaternion.identity);
         go.transform.parent = transform;
+    }
+    public void ActivateSpawner()
+    {
+        spawnActive = true;
+    }
+    public void DeactivateSpawner()
+    {
+        spawnActive = false;
     }
 }

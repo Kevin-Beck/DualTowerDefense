@@ -22,8 +22,8 @@ public class StartFinishPlacer : MonoBehaviour
 
     public void UpdatePositions()
     {
-        StartMarker.transform.position = new Vector3(start.Value.X * 4, 5.5f, start.Value.Z * 4);
-        EndMarker.transform.position = new Vector3(end.Value.X * 4, 5.5f, end.Value.Z * 4);
+        StartMarker.transform.position = new Vector3(start.Value.X * 4, 0f, start.Value.Z * 4);
+        EndMarker.transform.position = new Vector3(end.Value.X * 4, 0f, end.Value.Z * 4);
     }
 
 }

@@ -7,6 +7,7 @@ public class EnemyWalk : MonoBehaviour
     public ThingRuntimeSet tiles;
 
     public float speed = 10f;
+    public float curSpeed;
     public float dist = 0.2f;
     private Transform target;
     private int wavepointIndex;
@@ -15,13 +16,14 @@ public class EnemyWalk : MonoBehaviour
     {
         wavepointIndex = tiles.Items.Count-1;
         target = tiles.Items[wavepointIndex].transform;
+        curSpeed = speed;
     }
 
     private void Update()
     {
         Vector3 dir = target.position - transform.position;
 
-        transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
+        transform.Translate(dir.normalized * curSpeed * Time.deltaTime, Space.World);
 
         if(Vector3.Distance(transform.position, target.position) <= dist)
         {
@@ -39,5 +41,15 @@ public class EnemyWalk : MonoBehaviour
 
             target = tiles.Items[wavepointIndex].transform;
         }
+    }
+    public IEnumerator Slow(float time, float intensity)
+    {
+        curSpeed *= intensity;
+        yield return new WaitForSeconds(time);
+        ResetSpeed();
+    }
+    public void ResetSpeed()
+    {
+        curSpeed = speed;
     }
 }

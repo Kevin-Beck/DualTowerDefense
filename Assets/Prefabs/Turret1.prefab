@@ -61,12 +61,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 15
   turnSpeed: 10
-  fireRate: 0.25
+  fireRate: 1
   enemies: {fileID: 11400000, guid: f55115637cfe4264caa410749571ff56, type: 2}
   partToRotate: {fileID: 6765855506982084863}
   bulletPrefab: {fileID: 8631486392982790553, guid: 8256a37543ce0374c8f2f2362680f46c,
     type: 3}
   firePoint: {fileID: 111799390581500068}
+  myTowerAbilities:
+  - {fileID: 11400000, guid: 427e9582804730f4884397e70d711edc, type: 2}
 --- !u!1 &773495245152920561
 GameObject:
   m_ObjectHideFlags: 0

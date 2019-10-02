@@ -11,6 +11,11 @@ public class EnemyWalk : MonoBehaviour
     public float dist = 0.2f;
     private Transform target;
     private int wavepointIndex;
+    private int direction = 1; // 1 = forward, -1 = backwards;
+
+
+    List<Coroutine> walkSpeedResets = new List<Coroutine>();
+    List<Coroutine> directionResets = new List<Coroutine>();
 
     private void Start()
     {
@@ -32,7 +37,11 @@ public class EnemyWalk : MonoBehaviour
 
         void GetNextWayPoint()
         {
-            wavepointIndex--;
+            wavepointIndex += -1 * direction;
+            if(wavepointIndex > tiles.Items.Count - 1)
+            {
+                wavepointIndex = tiles.Items.Count -1;
+            }
             if (wavepointIndex < 0)
             {
                 Destroy(gameObject);
@@ -42,8 +51,12 @@ public class EnemyWalk : MonoBehaviour
             target = tiles.Items[wavepointIndex].transform;
         }
     }
-    public IEnumerator Slow(float time, float intensity)
+    public void Slow(float time, float intensity)
     {
+        walkSpeedResets.Add(StartCoroutine(SlowMovement(time, intensity)));
+    }
+    public IEnumerator SlowMovement(float time, float intensity)
+    {        
         curSpeed *= intensity;
         yield return new WaitForSeconds(time);
         ResetSpeed();
@@ -51,5 +64,26 @@ public class EnemyWalk : MonoBehaviour
     public void ResetSpeed()
     {
         curSpeed = speed;
+        foreach (Coroutine c in walkSpeedResets)
+            StopCoroutine(c);
+    }
+
+
+    public void Reverse(float time)
+    {
+        directionResets.Add(StartCoroutine(ReverseDirection(time)));
+    }
+    public IEnumerator ReverseDirection(float time)
+    {
+        direction = -1;
+        wavepointIndex++;
+        yield return new WaitForSeconds(3);
+        ResetDirection();
+    }
+    public void ResetDirection()
+    {
+        direction = 1;
+        foreach (Coroutine c in directionResets)
+            StopCoroutine(c);
     }
 }

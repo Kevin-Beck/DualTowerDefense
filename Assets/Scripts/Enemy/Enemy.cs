@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     EnemyWalk ewalk;
     EnemyHealth ehealth;
 
+
     private void Start()
     {
         ewalk = GetComponent<EnemyWalk>();
@@ -17,17 +18,22 @@ public class Enemy : MonoBehaviour
 
     public void Slow(float time, float intensity)
     {
-        StartCoroutine(ewalk.Slow(time, intensity));
+        ewalk.Slow(time, intensity);
     }
 
-    public void TakeDamage(float dmg, DamageType type)
+    public void TakeImpactDamage(Effect effect)
     {
-        ehealth.TakeDamage(dmg, type);
+        ehealth.TakeDamage(effect.GetImpactDamage(), effect.GetDamageType(), effect.GetParticles());        
     }
 
-    public void TakeDamageOverTime(int ticks, float damagePerTick, float timeBetweenTicks, DamageType type)
+    public void TakeDamageOverTime(int ticks, float damagePerTick, float timeBetweenTicks, Effect effect)
     {
-        StartCoroutine(ehealth.TakeDamageOverTime(ticks, damagePerTick, timeBetweenTicks, type));
+        StartCoroutine(ehealth.TakeDamageOverTime(ticks, damagePerTick, timeBetweenTicks, effect));
+    }
+
+    public void ReverseDirection(float time)
+    {
+        ewalk.Reverse(time);
     }
 
 

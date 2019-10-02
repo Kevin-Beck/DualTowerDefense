@@ -18,17 +18,11 @@ public class TowerScript : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform firePoint;
 
-    List<Effect> myTowerAbilities = new List<Effect>();
+    [SerializeField] List<Effect> myTowerAbilities = new List<Effect>();
 
     private void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, .5f);
-        // TEMP FOR TESTING
-       // IceEffect ie = new IceEffect();        
-        FireEffect fe = new FireEffect();
-        myTowerAbilities.Add(fe);
-      //  myTowerAbilities.Add(ie);
-        // END TEMP
     }
 
     private void Update()

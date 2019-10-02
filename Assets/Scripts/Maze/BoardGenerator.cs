@@ -16,7 +16,7 @@ public class BoardGenerator : MonoBehaviour
     
     public void CreateBoard()
     {
-        DeleteAllBoardNodes();
+        DeleteAllBoardNodesWithoutTowers();
         DeleteAllPathTiles();
 
         MazeArrayGenerator mag = GetComponent<MazeArrayGenerator>();
@@ -69,7 +69,23 @@ public class BoardGenerator : MonoBehaviour
     public void DeleteAllBoardNodes()
     {
         while (mazeNodes.Items.Count > 0)
+        {            
             Destroy(mazeNodes.Items[0].gameObject);
+        }
+    }
+    public void DeleteAllBoardNodesWithoutTowers()
+    {
+        int pos = 0;
+        while(mazeNodes.Items.Count > towers.Items.Count)
+        {
+            if (mazeNodes.Items[pos].gameObject.GetComponent<BoardNode>().myTurret == null)
+                Destroy(mazeNodes.Items[pos].gameObject);
+            else
+                pos++;
+
+            if (pos > mazeNodes.Items.Count)
+                break;
+        }
     }
     public void DeleteAllPathTiles()
     {

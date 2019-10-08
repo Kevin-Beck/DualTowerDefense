@@ -2,16 +2,48 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// BoardGenerator is attached to a game object in Unity. It controls all functions related to the actual generation and management of the physical board elements and Maze Generation.
+/// <para>The object uses prefab references to generate the nodes and tiles that create the platform on which the pieces navigate and uses a few references that determine the height at which the pieces are placed.</para>
+/// </summary>
 public class BoardGenerator : MonoBehaviour
 {
+    /// <summary>
+    /// Prefab of each individual space on the board. Contains walls, base floor, and associated scripts.
+    /// </summary>
     public GameObject BoardNodePrefab;
+    /// <summary>
+    /// Prefab of the tile over which the enemies walk.
+    /// </summary>
     public GameObject PathTilePrefab;
+    /// <summary>
+    /// GameEvent Raised when the board creation process is completed.
+    /// </summary>
     public GameEvent BoardCreated;
+    /// <summary>
+    /// Set of all towers on the board, each tower is added to blocked spaces list during maze creation.
+    /// </summary>
     public ThingRuntimeSet towers;
+    /// <summary>
+    /// Runtime set of the board spaces, each space on the board is added to this list.
+    /// </summary>
     public ThingRuntimeSet mazeNodes;
+    /// <summary>
+    /// Runtime set of the path tiles over which the enemies path.
+    /// </summary>
     public ThingRuntimeSet pathTiles;
+    /// <summary>
+    /// Float value that controls how high off the origin plane the path tiles are instantiated.
+    /// </summary>
     public float pathHeight;
-    [SerializeField] FloatReference NodeScale;
+    /// <summary>
+    /// Scale of the node in unity, set to 4 for this project as the maze nodes are 4x4.
+    /// </summary>
+    [SerializeField] FloatReference NodeScale = default;
+    /// <summary>
+    /// Float value that controls how high off the origin plane the maze node pieces are built.
+    /// </summary>
     [SerializeField] float nodeHeight = 0;
     
     public void CreateBoard()

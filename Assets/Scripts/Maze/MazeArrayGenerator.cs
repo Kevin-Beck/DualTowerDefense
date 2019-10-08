@@ -7,15 +7,16 @@ using UnityEngine;
 /// </summary>
 public class MazeArrayGenerator : MonoBehaviour
 {
-    [SerializeField] IntReference sizeZ;
-    [SerializeField] IntReference sizeX;
-    [SerializeField] PositionReference StartPosition;
+    [SerializeField] IntReference sizeZ = default;
+    [SerializeField] IntReference sizeX = default;
+    [SerializeField] PositionReference StartPosition = default;
     private MazeNode[,] MazeArray;
     Stack<MazeNode> mazeCreationStack;
 
 
     /// <summary>
-    /// GetMaze takes in a list of blocked positions and returns a maze that move through the array
+    /// Takes in a list of Position Objects and returns a maze that move through the array
+    /// Returns a two dimensional array of MazeNode Objects that represent a maze
     /// </summary>
     /// <param name="BlockedPositions"></param>
     /// <returns></returns>

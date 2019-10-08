@@ -12,6 +12,8 @@ public class Spawner : MonoBehaviour
 
     bool spawnActive = false;
 
+    public ThingRuntimeSet currentEnemies;
+
     public void Update()
     {
         if(spawnActive)
@@ -24,12 +26,16 @@ public class Spawner : MonoBehaviour
             countdown -= Time.deltaTime;
         }
     }
-
+    public void DestroyAllEnemies()
+    {
+        foreach (Thing enemy in currentEnemies.Items.ToArray())
+            Destroy(enemy.gameObject);
+    }
     IEnumerator SpawnWave()
     {
 
         waveIndex++;
-        for (int i = 0; i < waveIndex; i++)
+        for (int i = 0; i < Mathf.Min(waveIndex, 5); i++)
         {
             SpawnEnemy();
             yield return new WaitForSeconds(0.5f);

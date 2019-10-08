@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] public float maxHealth;
-    [SerializeField] public float curHealth;
+    [SerializeField] float maxHealth = default;
+    float curHealth;
 
-    [Header("0 = Immune, 1 = Normal, 2 = Weak")]
+    [Header("DMG Multiplier: 0 = Immune, 1 = Normal, 2 = Weak")]
     [SerializeField] float FireVulnerability = 1;
     [SerializeField] float IceVulnerability = 1;
     [SerializeField] float PoisonVulnerability = 1;
-    [SerializeField] float MagicVulnerability = 1;
+    [SerializeField] float MagicVulnerability = 1;    
 
-    [Header("HealthBar")]
-    [SerializeField] BarController barController;
+     BarController barController;
 
+    private void Awake()
+    {
+        barController = GetComponentInChildren<BarController>();
+        if (barController == null)
+            throw new MissingComponentException();
+    }
     private void Start()
     {
         curHealth = maxHealth;
@@ -38,24 +43,25 @@ public class EnemyHealth : MonoBehaviour
         }
         if (type == DamageType.MAGIC)
         {
-            result += dmg * PoisonVulnerability;
+            result += dmg * MagicVulnerability;
         }
 
-        Instantiate(particles, transform);
+        if(particles != null)
+            Instantiate(particles, transform);
 
         curHealth -= dmg;
         if(curHealth <= 0)
         {
             Destroy(gameObject);
         }
-        barController.UpdateBarValue();
+        barController.UpdateBarValue(curHealth, maxHealth);
     }
-    public IEnumerator TakeDamageOverTime(int ticks, float damagePerTick, float timeBetweenTicks, Effect effect)
+    public IEnumerator TakeDamageOverTime(int ticks, float damagePerTick, DamageType typeOfDamage, float timeBetweenTicks, GameObject tickParticles)
     {
         for (int i = 0; i < ticks; i++)
         {
             yield return new WaitForSeconds(timeBetweenTicks);
-            TakeDamage(damagePerTick, effect.GetDamageType(), effect.GetParticles());
+            TakeDamage(damagePerTick, typeOfDamage, tickParticles);
         }
 
     }

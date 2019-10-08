@@ -73,7 +73,7 @@ public class EnemyWalk : MonoBehaviour
     {
         directionResets.Add(StartCoroutine(ReverseDirection(time)));
     }
-    public IEnumerator ReverseDirection(float time)
+    private IEnumerator ReverseDirection(float time)
     {
         direction = -1;
         wavepointIndex++;

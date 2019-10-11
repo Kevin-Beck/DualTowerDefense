@@ -6,8 +6,8 @@ using UnityEngine;
 /// Impact damage deals the specified damage upon impact
 /// <seealso cref="Effect"/>
 /// </summary>
-[CreateAssetMenu(fileName = "ImpactDamage", menuName = "TowerEffect/ImpactDamage")]
-public class ImpactDamage : Effect
+[CreateAssetMenu(fileName = "DamageOverTime", menuName = "TowerEffect/DamageOverTime")]
+public class DamageOverTime : Effect
 {
     /// <summary>
     /// Type of damage the bullet carries to the enemy.
@@ -22,9 +22,11 @@ public class ImpactDamage : Effect
     [SerializeField] private GameObject projectileParticles = default;
     [SerializeField] private GameObject impactParticles = default;
 
-    [Header("Impact Bullet Data")]
-    [SerializeField] private GameObject effectParticle = default;
-    [SerializeField] private float damage = default;
+    [Header("DamageOverTime Data")]
+    [SerializeField] private int numberOfTicks = default;
+    [SerializeField] private GameObject tickParticles = default;
+    [SerializeField] private float tickDamage = default;
+    [SerializeField] private float tickDelay = default;
 
     public override void AlterProjectile(PolyProjectile b)
     {
@@ -36,7 +38,7 @@ public class ImpactDamage : Effect
 
     public override void ApplyProjectileEffect(Enemy e)
     {
-        e.ehealth.TakeDamage(damage, typeOfDamage, effectParticle);
+        e.ehealth.TakeDamageOverTime(numberOfTicks, tickDamage, typeOfDamage, tickDelay, tickParticles);
     }
 
     public override GameObject GetImpactParticles()

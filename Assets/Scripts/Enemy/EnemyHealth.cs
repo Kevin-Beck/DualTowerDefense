@@ -15,6 +15,7 @@ public class EnemyHealth : MonoBehaviour
 
      BarController barController;
 
+    [SerializeField] Vector3 DamageTickPositionOffset = default;
     private void Awake()
     {
         barController = GetComponentInChildren<BarController>();
@@ -47,7 +48,10 @@ public class EnemyHealth : MonoBehaviour
         }
 
         if(particles != null)
-            Instantiate(particles, transform);
+        {
+            GameObject go = Instantiate(particles, transform.position + DamageTickPositionOffset, transform.rotation);
+            go.transform.parent = gameObject.transform;
+        }
 
         curHealth -= dmg;
         if(curHealth <= 0)
@@ -56,7 +60,11 @@ public class EnemyHealth : MonoBehaviour
         }
         barController.UpdateBarValue(curHealth, maxHealth);
     }
-    public IEnumerator TakeDamageOverTime(int ticks, float damagePerTick, DamageType typeOfDamage, float timeBetweenTicks, GameObject tickParticles)
+    public void TakeDamageOverTime(int ticks, float damagePerTick, DamageType typeOfDamage, float timeBetweenTicks, GameObject tickParticles)
+    {
+        StartCoroutine(DamageOverTime(ticks, damagePerTick, typeOfDamage, timeBetweenTicks, tickParticles));
+    }
+    private IEnumerator DamageOverTime(int ticks, float damagePerTick, DamageType typeOfDamage, float timeBetweenTicks, GameObject tickParticles)
     {
         for (int i = 0; i < ticks; i++)
         {

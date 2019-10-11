@@ -16,30 +16,32 @@ public class MazeSolver : MonoBehaviour
     public IntReference MazeZ;
 
     public GameEvent MazeSolved;
-    public GameEvent MazeSolveFailed;
-    
+    public GameEvent MazeSolveFailed;    
+
     public Stack<Position> SolveMaze(MazeNode[,] Maze)
     {
         myMaze = Maze;
         Path = new Stack<Position>();
-        
+
         curX = StartRef.Value.X;
         curZ = StartRef.Value.Z;
 
         visited = new bool[MazeX.Value, MazeZ.Value];
-        for(int i = 0; i < MazeX.Value; i++)
+        for (int i = 0; i < MazeX.Value; i++)
         {
-            for(int j = 0; j < MazeZ.Value; j++)
+            for (int j = 0; j < MazeZ.Value; j++)
             {
-                visited[i,j] = false;
+                visited[i, j] = false;
             }
         }
-        while(SolveStep());
+
+        while (SolveStep()) ;       
+
         return Path;
     }
     public bool SolveStep()
     {
-        if(curX == FinishRef.Value.X && curZ == FinishRef.Value.Z)
+        if (curX == FinishRef.Value.X && curZ == FinishRef.Value.Z)
         {
             Path.Push(new Position(curX, curZ));
             MazeSolved.Raise();
@@ -60,13 +62,17 @@ public class MazeSolver : MonoBehaviour
                 if (Path.Count != 0)
                 {
                     backStep = Path.Pop();
-                } else if(Path.Count == 0)
+                }
+                else if (Path.Count == 0)
                 {
                     fails++;
                 }
+                else
+                    fails = 0;
 
                 if (fails > 4)
                 {
+                    MazeSolveFailed.Raise();
                     return false;
                 }
                 curX = backStep.X;

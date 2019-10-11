@@ -109,7 +109,13 @@ public class BoardNode : MonoBehaviour
                 PolyTower tower = myTurret.GetComponent<PolyTower>();
 
                 foreach (Effect e in towerToBuild.myAbilities)
+                {
+
                     tower.myEffects.Add(e);
+                    e.AlterTower(tower);
+
+                }
+                
             }
         }
     }

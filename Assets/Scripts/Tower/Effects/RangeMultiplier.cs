@@ -6,14 +6,9 @@ using UnityEngine;
 /// Impact damage deals the specified damage upon impact
 /// <seealso cref="Effect"/>
 /// </summary>
-[CreateAssetMenu(fileName = "ImpactDamage", menuName = "TowerEffect/ImpactDamage")]
-public class ImpactDamage : Effect
+[CreateAssetMenu(fileName = "RangeMultiplier", menuName = "TowerEffect/RangeMultiplier")]
+public class RangeMultiplier : Effect
 {
-    /// <summary>
-    /// Type of damage the bullet carries to the enemy.
-    /// <seealso cref="DamageType"/>
-    /// </summary>
-    [SerializeField] private DamageType typeOfDamage = DamageType.FIRE;
     /// <summary>
     /// ParticleEffect tied to the effect.
     /// </summary>
@@ -22,9 +17,8 @@ public class ImpactDamage : Effect
     [SerializeField] private GameObject projectileParticles = default;
     [SerializeField] private GameObject impactParticles = default;
 
-    [Header("Impact Bullet Data")]
-    [SerializeField] private GameObject effectParticle = default;
-    [SerializeField] private float damage = default;
+    [Header("Range Data")]
+    [SerializeField] private float rangeMultiplier = 3;
 
     public override void AlterProjectile(PolyProjectile b)
     {
@@ -32,11 +26,11 @@ public class ImpactDamage : Effect
 
     public override void AlterTower(PolyTower ts)
     {
+        ts.range *= rangeMultiplier;
     }
 
     public override void ApplyProjectileEffect(Enemy e)
     {
-        e.ehealth.TakeDamage(damage, typeOfDamage, effectParticle);
     }
 
     public override GameObject GetImpactParticles()

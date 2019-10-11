@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f03e1f3c80b7954bb899eaa966d3e35, type: 3}
-  m_Name: Finish
+  m_Script: {fileID: 11500000, guid: 75b515ecb965621438050053b0b57d17, type: 3}
+  m_Name: 3x range
   m_EditorClassIdentifier: 
-  DeveloperDescription: 
-  Value:
-    X: 6
-    Z: 6
+  muzzleParticles: {fileID: 0}
+  projectileParticles: {fileID: 0}
+  impactParticles: {fileID: 0}
+  rangeMultiplier: 3

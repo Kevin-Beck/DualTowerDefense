@@ -8,6 +8,7 @@ using UnityEngine;
 /// </summary>
 public class CameraMover : MonoBehaviour
 {
+    public float maxheight = 100;
     /// <summary>
     /// The offset from the target position that the camera should sit.
     /// <para>if offset is Vector3.Zero, the camera sits directly on the origin.</para>
@@ -70,8 +71,8 @@ public class CameraMover : MonoBehaviour
 
         if(transform.position.y < 10)
             transform.position = new Vector3(transform.position.x, 10, transform.position.z);
-        if (transform.position.y > 100)
-            transform.position = new Vector3(transform.position.x, 100, transform.position.z);
+        if (transform.position.y > maxheight)
+            transform.position = new Vector3(transform.position.x, maxheight, transform.position.z);
 
     }
 }

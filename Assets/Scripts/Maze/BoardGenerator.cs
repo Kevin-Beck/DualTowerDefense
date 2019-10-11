@@ -72,19 +72,22 @@ public class BoardGenerator : MonoBehaviour
 
         // Build Maze
         foreach (MazeNode mn in mazeData)
-        {            
-            GameObject go = Instantiate(BoardNodePrefab, transform);
-            go.transform.position = new Vector3(mn.myPos.X * NodeScale.Value, nodeHeight, mn.myPos.Z * NodeScale.Value);
-            BoardNode bn = go.GetComponent<BoardNode>();
+        {
+            if (mn != null)
+            {
+                GameObject go = Instantiate(BoardNodePrefab, transform);
+                go.transform.position = new Vector3(mn.myPos.X * NodeScale.Value, nodeHeight, mn.myPos.Z * NodeScale.Value);
+                BoardNode bn = go.GetComponent<BoardNode>();
 
-            if (mn.walls[0] == false)
-                Destroy(bn.NorthWall);
-            if (mn.walls[1] == false)
-                Destroy(bn.EastWall);
-            if (mn.walls[2] == false)
-                Destroy(bn.SouthWall);
-            if (mn.walls[3] == false)
-                Destroy(bn.WestWall);
+                if (mn.walls[0] == false)
+                    Destroy(bn.NorthWall);
+                if (mn.walls[1] == false)
+                    Destroy(bn.EastWall);
+                if (mn.walls[2] == false)
+                    Destroy(bn.SouthWall);
+                if (mn.walls[3] == false)
+                    Destroy(bn.WestWall);
+            }
         }
 
         // lay solved path

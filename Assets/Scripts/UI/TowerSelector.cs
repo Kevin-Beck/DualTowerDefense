@@ -7,7 +7,7 @@ public class TowerSelector : MonoBehaviour
 {
     Toggle myToggle;
     public TowerData curTower;
-    [SerializeField] private List<Effect> effectsToAdd = new List<Effect>();
+    [SerializeField] public List<Effect> effectsToAdd = new List<Effect>();
 
     private void Awake()
     {
@@ -24,7 +24,6 @@ public class TowerSelector : MonoBehaviour
 
     private void AddEffects()
     {
-        Debug.Log("HITS");
         foreach (Effect e in effectsToAdd)
             curTower.myAbilities.Add(e);
     }

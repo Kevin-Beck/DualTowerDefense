@@ -13,7 +13,6 @@ public class MazeArrayGenerator : MonoBehaviour
     private MazeNode[,] MazeArray;
     Stack<MazeNode> mazeCreationStack;
 
-
     /// <summary>
     /// Takes in a list of Position Objects and returns a maze that move through the array
     /// Returns a two dimensional array of MazeNode Objects that represent a maze
@@ -49,6 +48,13 @@ public class MazeArrayGenerator : MonoBehaviour
         {
             MazeArray[p.X, p.Z].visited = true;
         }
+        
+
+        foreach (Position p in blocked)
+        {
+            MazeArray[p.X, p.Z] = null;
+        }
+
         // MazeArray now contains an array of MazeNodes, with some of them checked off as being checked, these checked positions will not be included in the maze
     }
 
@@ -59,13 +65,13 @@ public class MazeArrayGenerator : MonoBehaviour
     {
         MazeNode current = MazeArray[createStart.X, createStart.Z];
         // Mark this node as having been visited and add it to the stack
-        mazeCreationStack.Push(current);
         current.visited = true;
         // begin processing loop
         // check if we have looked in every direction
         bool finished = false;
         while (!finished)
         {
+          //  Debug.Log("MAG: Processing X:" + current.myPos.X + " Z: " + current.myPos.Z);
             if (current.currentDirection > 3)
             {
                 // we have looked 0, 1, 2, 3 and we still do not have a direction to go.
@@ -79,7 +85,6 @@ public class MazeArrayGenerator : MonoBehaviour
                 // we have not checked everydirection, so we reach into the node and go to its next direction  
                 
                 bool foundValidPosition = false;
-
                 while (current.currentDirection < 4 && !foundValidPosition)
                 {
                     Position moveDirection = new Position(0, 0);
@@ -89,17 +94,16 @@ public class MazeArrayGenerator : MonoBehaviour
                     else if (current.checkdirections[current.currentDirection] == 1)
                         moveDirection.X = 1;
                     else if (current.checkdirections[current.currentDirection] == 2)
-                        moveDirection.X = -1;
+                        moveDirection.Z = -1; // changed X to Z to test
                     else if (current.checkdirections[current.currentDirection] == 3)
-                        moveDirection.Z = -1;
+                        moveDirection.X = -1; // changed Z to X to Test
 
                     // that position is equal to the current position plus the move
                     Position nextPosition = new Position(current.myPos.X + moveDirection.X, current.myPos.Z + moveDirection.Z);
                     current.currentDirection++; // increment the counter for which diretion we should look at
-
                     // if this next position is a valid move, and it has not yet been processed, we will cut down the walls and go to that position
-                    if (ValidMove(nextPosition) && !MazeArray[nextPosition.X, nextPosition.Z].visited)
-                    {
+                    if (ValidMove(nextPosition) && MazeArray[nextPosition.X, nextPosition.Z] != null && !MazeArray[nextPosition.X, nextPosition.Z].visited)
+                    {                        
                         // remove the walls before we hop to the new position
                         if (moveDirection.Z == 1)
                         {
@@ -122,7 +126,10 @@ public class MazeArrayGenerator : MonoBehaviour
                             MazeArray[nextPosition.X, nextPosition.Z].RemoveEastWall();
                         }
                         foundValidPosition = true;
+
+                        mazeCreationStack.Push(current);
                         current = MazeArray[nextPosition.X, nextPosition.Z];
+
                         mazeCreationStack.Push(current);
                         current.visited = true;
                     }                   
@@ -132,6 +139,7 @@ public class MazeArrayGenerator : MonoBehaviour
             if (mazeCreationStack.Count == 0)
             {
                 // maze completed
+
                 finished = true;
             }
         }

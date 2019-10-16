@@ -4,16 +4,29 @@ using UnityEngine;
 
 public class EnemyWalk : MonoBehaviour
 {
+    [Header("Path Directional Data")]
     public ThingRuntimeSet tiles;
-
-    public float speed = 10f;
-    public float curSpeed;
-    public float dist = 0.2f;
     private Transform target;
     private int wavepointIndex;
     private int direction = 1; // 1 = forward, -1 = backwards;
 
 
+    [Header("Walking Variables")]
+    public float speed = 10f;
+    public float curSpeed;
+    public float dist = 0.2f;
+
+    [Header("Warping Variables")]
+    public bool warper = false;
+    private bool timeToWarp = true;
+    public int warpStepMin = 3;
+    public int warpStepMax = 3;
+    private int warpStep = 3;
+    public float warpTime = 2;
+    public GameObject warpParticles;
+
+
+    [Header("Coroutine Storage")]
     List<Coroutine> walkSpeedResets = new List<Coroutine>();
     List<Coroutine> directionResets = new List<Coroutine>();
 
@@ -26,40 +39,73 @@ public class EnemyWalk : MonoBehaviour
 
     private void Update()
     {
-        Vector3 dir = target.position - transform.position;
-
-        transform.Translate(dir.normalized * curSpeed * Time.deltaTime, Space.World);
-
-        if(Vector3.Distance(transform.position, target.position) <= dist)
+        if (warper && timeToWarp)
         {
-            GetNextWayPoint();
+            speed = 1;
+            if(timeToWarp)
+                StartCoroutine(Warp());
         }
-
-        void GetNextWayPoint()
+        else
         {
-            wavepointIndex += -1 * direction;
-            if(wavepointIndex > tiles.Items.Count - 1)
-            {
-                wavepointIndex = tiles.Items.Count -1;
-            }
-            if (wavepointIndex < 0)
-            {
-                Destroy(gameObject);
-                return;
-            }
+            Vector3 dir = target.position - transform.position;
 
-            target = tiles.Items[wavepointIndex].transform;
+            transform.Translate(dir.normalized * curSpeed * Time.deltaTime, Space.World);
+
+            if (Vector3.Distance(transform.position, target.position) <= dist)
+            {
+                GetNextWayPoint();
+            }
         }
     }
+
+    void GetNextWayPoint()
+    {
+        wavepointIndex += -1 * direction;
+        if (wavepointIndex > tiles.Items.Count - 1)
+        {
+            wavepointIndex = tiles.Items.Count - 1;
+        }
+        if (wavepointIndex < 0)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        target = tiles.Items[wavepointIndex].transform;
+    }
+
     public void Slow(float time, float intensity)
     {
         walkSpeedResets.Add(StartCoroutine(SlowMovement(time, intensity)));
     }
-    public IEnumerator SlowMovement(float time, float intensity)
+    private IEnumerator SlowMovement(float time, float intensity)
     {        
         curSpeed *= intensity;
         yield return new WaitForSeconds(time);
         ResetSpeed();
+    }
+
+
+    private IEnumerator WarpParticles(float time)
+    {
+        yield return new WaitForSeconds(time*.9f);
+        Destroy(Instantiate(warpParticles, transform.position, transform.rotation), 1);
+        if(wavepointIndex - warpStep > 0 && wavepointIndex - warpStep < tiles.Items.Count - 1)
+            Destroy(Instantiate(warpParticles, tiles.Items[wavepointIndex-warpStep].transform.position, tiles.Items[wavepointIndex - warpStep].transform.rotation), 1);
+    }
+    private IEnumerator Warp()
+    {
+        timeToWarp = false;
+        warpStep = Random.Range(warpStepMin, warpStepMax);
+        StartCoroutine(WarpParticles(warpTime / (curSpeed / speed)));
+        yield return new WaitForSeconds(warpTime / (curSpeed/speed));
+        for (int i = 0; i < warpStep; i++)
+            GetNextWayPoint();
+        PolyProjectile[] curProj = GetComponentsInChildren<PolyProjectile>();
+        foreach (PolyProjectile pp in curProj)
+            Destroy(pp.gameObject);
+        transform.position = target.position;
+        timeToWarp = true;
     }
     public void ResetSpeed()
     {
@@ -67,7 +113,6 @@ public class EnemyWalk : MonoBehaviour
         foreach (Coroutine c in walkSpeedResets)
             StopCoroutine(c);
     }
-
 
     public void Reverse(float time)
     {
@@ -85,5 +130,13 @@ public class EnemyWalk : MonoBehaviour
         direction = 1;
         foreach (Coroutine c in directionResets)
             StopCoroutine(c);
+    }
+    public int GetWavePointIndex()
+    {
+        return wavepointIndex;
+    }
+    public void SetWavePointIndex(int index)
+    {
+        wavepointIndex = index;
     }
 }

@@ -100,6 +100,8 @@ public class BoardNode : MonoBehaviour
             if (myTurret != null)
             {
                 Debug.Log("Cant Build Here, already have a tower");
+                // TODO
+                // Activate this tower and display it on the UI
                 return;
             }
             else
@@ -108,17 +110,20 @@ public class BoardNode : MonoBehaviour
                 myTurret.transform.parent = transform;
                 PolyTower tower = myTurret.GetComponent<PolyTower>();
 
-                foreach (Effect e in towerToBuild.myAbilities)
+                foreach (TowerAbility ta in towerToBuild.myAbilities)
                 {
+                    tower.myAbilities.Add(ta);
+                    foreach (Effect e in ta.GetEffects())
+                    {
+                        if(e is TowerEffect)
+                        {
+                            TowerEffect temp = (TowerEffect)e;
+                            temp.AlterTower(tower);
 
-                    tower.myEffects.Add(e);
-                    e.AlterTower(tower);
-
-                }
-                
+                        }                           
+                    }
+                }                
             }
         }
     }
-
-
 }

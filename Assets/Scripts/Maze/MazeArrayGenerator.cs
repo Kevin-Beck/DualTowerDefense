@@ -71,7 +71,7 @@ public class MazeArrayGenerator : MonoBehaviour
         bool finished = false;
         while (!finished)
         {
-          //  Debug.Log("MAG: Processing X:" + current.myPos.X + " Z: " + current.myPos.Z);
+         
             if (current.currentDirection > 3)
             {
                 // we have looked 0, 1, 2, 3 and we still do not have a direction to go.
@@ -79,6 +79,7 @@ public class MazeArrayGenerator : MonoBehaviour
                 // popping will remove the current position from the stack
                 current = mazeCreationStack.Pop();
                 // now if the stack is empty we have completed making a maze
+                
             }
             else
             {
@@ -94,9 +95,9 @@ public class MazeArrayGenerator : MonoBehaviour
                     else if (current.checkdirections[current.currentDirection] == 1)
                         moveDirection.X = 1;
                     else if (current.checkdirections[current.currentDirection] == 2)
-                        moveDirection.Z = -1; // changed X to Z to test
+                        moveDirection.Z = -1;
                     else if (current.checkdirections[current.currentDirection] == 3)
-                        moveDirection.X = -1; // changed Z to X to Test
+                        moveDirection.X = -1; 
 
                     // that position is equal to the current position plus the move
                     Position nextPosition = new Position(current.myPos.X + moveDirection.X, current.myPos.Z + moveDirection.Z);
@@ -136,7 +137,7 @@ public class MazeArrayGenerator : MonoBehaviour
                 }
             }
 
-            if (mazeCreationStack.Count == 0)
+            if (mazeCreationStack.Count == 0 && current.currentDirection > 3)
             {
                 // maze completed
 

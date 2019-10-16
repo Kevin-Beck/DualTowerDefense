@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PolyProjectile : MonoBehaviour
@@ -25,7 +26,7 @@ public class PolyProjectile : MonoBehaviour
     /// <summary>
     /// List of Effects given to this bullet from its tower.
     /// </summary>
-    public List<Effect> myAbilities = new List<Effect>();
+    public List<Effect> myEffects = new List<Effect>();
 
 
     [Header("Adjust for collision distance")]
@@ -33,16 +34,23 @@ public class PolyProjectile : MonoBehaviour
 
 
     void Start()
-    {    
+    {
         // go through the effects, add each effect's projectiles to the projectile lists
-        foreach(Effect e in myAbilities)
+        foreach (Effect e in myEffects)
         {
-            if (e.GetMuzzleParticles())
-                muzzleParticlesPrefabs.Add(e.GetMuzzleParticles());
-            if (e.GetProjectileParticles())
-                projectileParticlesPrefabs.Add(e.GetProjectileParticles());
-            if (e.GetImpactParticles())
-                impactParticlesPrefabs.Add(e.GetImpactParticles());
+            if(e is ProjectileEffect)
+            {
+                ProjectileEffect pe = (ProjectileEffect)e;
+                if (pe.GetMuzzleParticles())
+                    muzzleParticlesPrefabs.Add(pe.GetMuzzleParticles());
+                if (pe.GetProjectileParticles())
+                    projectileParticlesPrefabs.Add(pe.GetProjectileParticles());
+            }else if(e is ImpactEffect)
+            {
+                ImpactEffect ie = (ImpactEffect)e;
+                if (ie.GetImpactParticles())
+                    impactParticlesPrefabs.Add(ie.GetImpactParticles());
+            }
         }
 
         // Then create the projectiles for the start
@@ -114,9 +122,10 @@ public class PolyProjectile : MonoBehaviour
     void ApplyEffect()
     {
         Enemy nme = target.gameObject.GetComponent<Enemy>();
-        foreach (Effect e in myAbilities)
+        foreach (Effect e in myEffects)
         {
-            e.ApplyProjectileEffect(nme);
+            if(e is ImpactEffect)
+                ((ImpactEffect)e).ApplyProjectileEffect(nme);
         }
     }
 

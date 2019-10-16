@@ -16,7 +16,7 @@ public class PolyTower : MonoBehaviour
     public Transform firePoint;
 
     [Header("Effects")]
-    [SerializeField] public List<Effect> myEffects = new List<Effect>();
+    [SerializeField] public List<TowerAbility> myAbilities = new List<TowerAbility>();
 
     [Header("Other")]
     public GameObject bulletPrefab;
@@ -57,8 +57,13 @@ public class PolyTower : MonoBehaviour
         // The bullet itself will process the effects list and decide which particles go on the bullet
         // The tower will simply hand it the list it has of the effects that bullet is supposed to have
         go.SetActive(false);
-        PolyProjectile bullet = go.GetComponent<PolyProjectile>();
-        bullet.myAbilities = myEffects;
+        PolyProjectile bullet = go.GetComponent<PolyProjectile>();        
+
+        foreach(TowerAbility ta in myAbilities)
+        {
+            foreach(Effect e in ta.GetEffects())
+                bullet.myEffects.Add(e);
+        }
         go.transform.parent = target;
         go.SetActive(true);
 

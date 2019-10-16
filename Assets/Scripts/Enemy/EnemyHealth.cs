@@ -26,23 +26,23 @@ public class EnemyHealth : MonoBehaviour
     {
         curHealth = maxHealth;
     }
-    public void TakeDamage(float dmg, DamageType type, GameObject particles)
+    public void TakeDamage(float dmg, EffectType type, GameObject particles)
     {
         float result = 0;
 
-        if(type == DamageType.FIRE)
+        if(type == EffectType.FIRE)
         {
             result += dmg * FireVulnerability;
         }
-        if (type == DamageType.ICE)
+        if (type == EffectType.ICE)
         {
             result += dmg * IceVulnerability;
         }
-        if (type == DamageType.POISON)
+        if (type == EffectType.POISON)
         {
             result += dmg * PoisonVulnerability;
         }
-        if (type == DamageType.MAGIC)
+        if (type == EffectType.MAGIC)
         {
             result += dmg * MagicVulnerability;
         }
@@ -60,11 +60,11 @@ public class EnemyHealth : MonoBehaviour
         }
         barController.UpdateBarValue(curHealth, maxHealth);
     }
-    public void TakeDamageOverTime(int ticks, float damagePerTick, DamageType typeOfDamage, float timeBetweenTicks, GameObject tickParticles)
+    public void TakeDamageOverTime(int ticks, float damagePerTick, EffectType typeOfDamage, float timeBetweenTicks, GameObject tickParticles)
     {
         StartCoroutine(DamageOverTime(ticks, damagePerTick, typeOfDamage, timeBetweenTicks, tickParticles));
     }
-    private IEnumerator DamageOverTime(int ticks, float damagePerTick, DamageType typeOfDamage, float timeBetweenTicks, GameObject tickParticles)
+    private IEnumerator DamageOverTime(int ticks, float damagePerTick, EffectType typeOfDamage, float timeBetweenTicks, GameObject tickParticles)
     {
         for (int i = 0; i < ticks; i++)
         {

@@ -59,6 +59,7 @@ public class MazeSolver : MonoBehaviour
             {
                 Path.Pop();
                 Position backStep = new Position(curX, curZ);
+
                 if (Path.Count != 0)
                 {
                     backStep = Path.Pop();

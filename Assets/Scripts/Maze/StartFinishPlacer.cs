@@ -13,12 +13,19 @@ public class StartFinishPlacer : MonoBehaviour
     public GameObject StartMarker;
     public GameObject EndMarker;
 
-    public void RandomizeLocations()
+    public void SemiRandomizeLocations()
     {
         start.SetValue(new Position(Random.Range(0, sizeX.Value/3), Random.Range(0, sizeZ/3)));
         end.SetValue(new Position(Random.Range(sizeX.Value/3 * 2, sizeX.Value), Random.Range(sizeZ.Value/3 *2, sizeZ)));
         UpdatePositions();
     }
+    public void RandomizeLocations()
+    {
+        start.SetValue(new Position(Random.Range(0, sizeX.Value), Random.Range(0, sizeZ)));
+        end.SetValue(new Position(Random.Range(0, sizeX.Value), Random.Range(0, sizeZ)));
+        UpdatePositions();
+    }
+
 
     public void UpdatePositions()
     {

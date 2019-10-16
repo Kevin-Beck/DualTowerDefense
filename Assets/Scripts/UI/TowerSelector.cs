@@ -7,7 +7,7 @@ public class TowerSelector : MonoBehaviour
 {
     Toggle myToggle;
     public TowerData curTower;
-    [SerializeField] public List<Effect> effectsToAdd = new List<Effect>();
+    [SerializeField] public List<TowerAbility> abilitiesToAdd = new List<TowerAbility>();
 
     private void Awake()
     {
@@ -17,20 +17,20 @@ public class TowerSelector : MonoBehaviour
     public void UpdateStatus()
     {
         if (myToggle.isOn)
-            AddEffects();
+            AddAbility();
         else
             RemoveEffects();
     }
 
-    private void AddEffects()
+    private void AddAbility()
     {
-        foreach (Effect e in effectsToAdd)
-            curTower.myAbilities.Add(e);
+        foreach (TowerAbility ta in abilitiesToAdd)
+            curTower.myAbilities.Add(ta);
     }
     private void RemoveEffects()
     {
-        foreach (Effect e in effectsToAdd)
-            curTower.myAbilities.Remove(e);
+        foreach (TowerAbility ta in abilitiesToAdd)
+            curTower.myAbilities.Remove(ta);
     }
 
     private void OnDisable()

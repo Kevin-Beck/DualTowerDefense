@@ -1,58 +1,55 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public GameObject enemyPrefab;
+    [SerializeField] public List<Wave> Waves = new List<Wave>();
     public PositionReference start;
     public float timeBetweenWaves = 5f; // reference a float called time til next wave instead
     public float countdown = 2f; // initial delay, also should reference a float ref
 
     private int waveIndex = 0;
 
-    bool spawnActive = false;
-
     public ThingRuntimeSet currentEnemies;
+    
 
-    public void Update()
-    {
-        if(spawnActive)
-        {
-            if (countdown <= 0f)
-            {
-                StartCoroutine(SpawnWave());
-                countdown = timeBetweenWaves;
-            }
-            countdown -= Time.deltaTime;
-        }
-    }
     public void DestroyAllEnemies()
     {
         foreach (Thing enemy in currentEnemies.Items.ToArray())
             Destroy(enemy.gameObject);
     }
-    IEnumerator SpawnWave()
-    {
 
-        waveIndex++;
-        for (int i = 0; i < Mathf.Min(waveIndex, 5); i++)
+    public void SpawnNextWave()
+    {
+        if (waveIndex >= Waves.Count)
         {
-            SpawnEnemy();
-            yield return new WaitForSeconds(0.5f);
+            Debug.Log("WavesCompleted");
+            return;
+        }
+        else
+        {
+            StartCoroutine(SpawnWave());
         }
     }
 
-    public void SpawnEnemy()
+    IEnumerator SpawnWave()
     {
-        GameObject go = Instantiate(enemyPrefab, new Vector3(start.Value.X * 4, 5, start.Value.Z * 4), Quaternion.identity);
+        for(int i = 0; i < Waves[waveIndex].sequences.Count; i++)
+        {
+            EnemySequence es = Waves[waveIndex].sequences[i];
+
+            for (int k = 0; k < es.GetEnemyCount(); k++)
+            {
+                SpawnEnemy(es.GetEnemy());
+                yield return new WaitForSeconds(Waves[waveIndex].sequences[i].GetSpawnPace());
+            }
+        }        
+    }
+
+    public void SpawnEnemy(GameObject enemyPrefab)
+    {
+        GameObject go = Instantiate(enemyPrefab, new Vector3(start.Value.X * 4, 3, start.Value.Z * 4), Quaternion.identity);
         go.transform.parent = transform;
-    }
-    public void ActivateSpawner()
-    {
-        spawnActive = true;
-    }
-    public void DeactivateSpawner()
-    {
-        spawnActive = false;
     }
 }

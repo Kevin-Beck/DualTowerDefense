@@ -131,6 +131,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 20
+  goldDroppedWhenKilled: 2
+  GoldChanged: {fileID: 11400000, guid: e6c475d2f4ceb9644a05071c5bb47112, type: 2}
+  PlayerGold: {fileID: 11400000, guid: 3cafd9d099624294a90be64f855cf084, type: 2}
   FireVulnerability: 1
   IceVulnerability: 1
   PoisonVulnerability: 1

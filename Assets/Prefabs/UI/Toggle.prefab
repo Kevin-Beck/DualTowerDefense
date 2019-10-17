@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -135, y: -15}
+  m_AnchoredPosition: {x: -130, y: 0}
   m_SizeDelta: {x: 260, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4222934357496866888
@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curTower: {fileID: 11400000, guid: 761a655e76e41354598aefea4719c742, type: 2}
-  effectsToAdd: []
+  abilitiesToAdd: []
 --- !u!1 &4222934357592200598
 GameObject:
   m_ObjectHideFlags: 0

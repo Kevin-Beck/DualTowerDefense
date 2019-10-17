@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f497f94468515146a8f7cc73a8398b0, type: 3}
-  m_Name: IceDart
+  m_Script: {fileID: 11500000, guid: f77e7f6923eae0042b7c026c168e49d6, type: 3}
+  m_Name: Normal Sphere Small
   m_EditorClassIdentifier: 
-  abilityEffects:
-  - {fileID: 11400000, guid: 47d4e656aa7e18d4b9106fc428893fc4, type: 2}
-  - {fileID: 11400000, guid: a7c03b6cba6041e4ab9ca8750cc31193, type: 2}
+  description: 
+  enemyPrefab: {fileID: 931593057982604166, guid: 46da0bddc36a41f41901d0d49ad88f68,
+    type: 3}
+  enemyCount: 2
+  spawnPace: 0.5

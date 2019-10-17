@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    public GameEvent WaveCompleted;
     [SerializeField] public List<Wave> Waves = new List<Wave>();
     public PositionReference start;
-    public float timeBetweenWaves = 5f; // reference a float called time til next wave instead
-    public float countdown = 2f; // initial delay, also should reference a float ref
 
     private int waveIndex = 0;
 
-    public ThingRuntimeSet currentEnemies;
-    
+    public ThingRuntimeSet currentEnemies;    
 
     public void DestroyAllEnemies()
     {
@@ -24,12 +22,13 @@ public class Spawner : MonoBehaviour
     {
         if (waveIndex >= Waves.Count)
         {
-            Debug.Log("WavesCompleted");
+            Debug.Log("Level Completed");
             return;
         }
         else
         {
             StartCoroutine(SpawnWave());
+            
         }
     }
 
@@ -44,7 +43,9 @@ public class Spawner : MonoBehaviour
                 SpawnEnemy(es.GetEnemy());
                 yield return new WaitForSeconds(Waves[waveIndex].sequences[i].GetSpawnPace());
             }
-        }        
+        }
+        waveIndex++;
+        WaveCompleted.Raise();
     }
 
     public void SpawnEnemy(GameObject enemyPrefab)

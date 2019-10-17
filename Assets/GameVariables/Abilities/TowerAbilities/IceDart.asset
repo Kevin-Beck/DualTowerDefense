@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f497f94468515146a8f7cc73a8398b0, type: 3}
-  m_Name: Sniper
+  m_Name: IceDart
   m_EditorClassIdentifier: 
   abilityEffects:
-  - {fileID: 11400000, guid: 1719945657e48944f9071b7202d66530, type: 2}
-  - {fileID: 11400000, guid: f9d24a1af5dedc140a8b8da6a4297757, type: 2}
-  - {fileID: 11400000, guid: e3d6683bc95a75141a37635ad17fed95, type: 2}
+  - {fileID: 11400000, guid: 47d4e656aa7e18d4b9106fc428893fc4, type: 2}
+  - {fileID: 11400000, guid: a7c03b6cba6041e4ab9ca8750cc31193, type: 2}
+  description: Ice Dart
+  cost: 15

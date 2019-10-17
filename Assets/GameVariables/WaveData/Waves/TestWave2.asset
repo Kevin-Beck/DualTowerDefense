@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e4024a3bd57e5124eb9bdba7b8f030d6, type: 3}
-  m_Name: TestWave
+  m_Name: TestWave2
   m_EditorClassIdentifier: 
   description: 
   sequences:
-  - {fileID: 11400000, guid: 63ea0c14e82a2b940ad6f2b6cf12d6e2, type: 2}
+  - {fileID: 11400000, guid: cd80b5a835e2eea4b9022a40c4dc8e2d, type: 2}
   - {fileID: 11400000, guid: 58304b72085ff154fac03c67d77d3db5, type: 2}
-  - {fileID: 11400000, guid: 63ea0c14e82a2b940ad6f2b6cf12d6e2, type: 2}
-  timeBetweenWaves: 3
+  - {fileID: 11400000, guid: 36407a96cb4b4b843af3df6e882b3928, type: 2}
+  timeBetweenWaves: 2

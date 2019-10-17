@@ -379,6 +379,7 @@ MonoBehaviour:
   baseTurret: {fileID: 205182609256231434, guid: 7502da9127082644ba0c099c0e65d3b6,
     type: 3}
   towerToBuild: {fileID: 11400000, guid: 761a655e76e41354598aefea4719c742, type: 2}
+  TowerConstructed: {fileID: 11400000, guid: 485f65cfbfee9f94ca50a91387f8da8a, type: 2}
 --- !u!114 &1188433378525080093
 MonoBehaviour:
   m_ObjectHideFlags: 0

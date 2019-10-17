@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: -206420923058980571}
   - component: {fileID: 5295948013776357501}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: RoundEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,6 +110,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 20
+  goldDroppedWhenKilled: 1
+  GoldChanged: {fileID: 11400000, guid: e6c475d2f4ceb9644a05071c5bb47112, type: 2}
+  PlayerGold: {fileID: 11400000, guid: 3cafd9d099624294a90be64f855cf084, type: 2}
   FireVulnerability: 1
   IceVulnerability: 1
   PoisonVulnerability: 1
@@ -147,7 +150,8 @@ MonoBehaviour:
   curSpeed: 10
   dist: 0.2
   warper: 0
-  warpStep: 3
+  warpStepMin: 3
+  warpStepMax: 3
   warpTime: 2
   warpParticles: {fileID: 1827386603726434, guid: 43eced1d3dc10e948ac36aee82f57c2d,
     type: 3}

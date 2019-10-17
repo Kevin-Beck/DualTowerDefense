@@ -9,11 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f77e7f6923eae0042b7c026c168e49d6, type: 3}
-  m_Name: 7 Normal
+  m_Script: {fileID: 11500000, guid: fed9773ebc6406349add17cf8ced570c, type: 3}
+  m_Name: PlayerGold
   m_EditorClassIdentifier: 
-  description: 
-  enemyPrefab: {fileID: 931593057982604166, guid: 46da0bddc36a41f41901d0d49ad88f68,
-    type: 3}
-  enemyCount: 3
-  spawnPace: 0.5
+  DeveloperDescription: 
+  Value: 25

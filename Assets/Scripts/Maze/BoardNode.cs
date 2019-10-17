@@ -58,7 +58,8 @@ public class BoardNode : MonoBehaviour
     /// This is the reference to the tower abilities that are to be added after the base is created
     /// </summary>
     public TowerData towerToBuild;
-
+    
+    [SerializeField] GameEvent TowerConstructed;
 
     /// <summary>
     /// Renderer and MaterialPropertyBlock are assigned, and the base color is added to the tile.
@@ -121,8 +122,9 @@ public class BoardNode : MonoBehaviour
                             temp.AlterTower(tower);
 
                         }                           
-                    }
-                }                
+                    }                    
+                }
+                TowerConstructed.Raise();
             }
         }
     }

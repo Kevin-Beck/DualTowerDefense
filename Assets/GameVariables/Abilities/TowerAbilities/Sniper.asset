@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f497f94468515146a8f7cc73a8398b0, type: 3}
-  m_Name: FirePing
+  m_Name: Sniper
   m_EditorClassIdentifier: 
   abilityEffects:
-  - {fileID: 11400000, guid: d9a3ab3f911aeda408a79a93e61d35f8, type: 2}
-  - {fileID: 11400000, guid: 94bf1ff9d77609e4da79412124d34d70, type: 2}
-  - {fileID: 11400000, guid: 3d3b7acacaa4b6444b05575ddde84bea, type: 2}
+  - {fileID: 11400000, guid: 1719945657e48944f9071b7202d66530, type: 2}
+  - {fileID: 11400000, guid: f9d24a1af5dedc140a8b8da6a4297757, type: 2}
+  - {fileID: 11400000, guid: e3d6683bc95a75141a37635ad17fed95, type: 2}
+  description: Sniper
+  cost: 16

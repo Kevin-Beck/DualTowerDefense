@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6db4e5f295f899c4d88be93ee3c31f98, type: 3}
+  m_Name: TestPool
+  m_EditorClassIdentifier: 
+  myAbilities:
+  - {fileID: 11400000, guid: 725d7d0ab5549414cb61e4d8e05cf74c, type: 2}
+  - {fileID: 11400000, guid: 725d7d0ab5549414cb61e4d8e05cf74c, type: 2}
+  - {fileID: 11400000, guid: 725d7d0ab5549414cb61e4d8e05cf74c, type: 2}
+  - {fileID: 11400000, guid: 725d7d0ab5549414cb61e4d8e05cf74c, type: 2}
+  - {fileID: 11400000, guid: 725d7d0ab5549414cb61e4d8e05cf74c, type: 2}
+  - {fileID: 11400000, guid: 725d7d0ab5549414cb61e4d8e05cf74c, type: 2}
+  - {fileID: 11400000, guid: 725d7d0ab5549414cb61e4d8e05cf74c, type: 2}
+  - {fileID: 11400000, guid: 725d7d0ab5549414cb61e4d8e05cf74c, type: 2}
+  - {fileID: 11400000, guid: 5df037a00b49ea044b455808151d36d3, type: 2}
+  - {fileID: 11400000, guid: 5df037a00b49ea044b455808151d36d3, type: 2}
+  - {fileID: 11400000, guid: 190fbdeb34b535540bd96661558e4189, type: 2}
+  - {fileID: 11400000, guid: 190fbdeb34b535540bd96661558e4189, type: 2}
+  - {fileID: 11400000, guid: 190fbdeb34b535540bd96661558e4189, type: 2}

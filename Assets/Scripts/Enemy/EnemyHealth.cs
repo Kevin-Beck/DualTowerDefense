@@ -7,6 +7,10 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] float maxHealth = default;
     float curHealth;
 
+    [SerializeField] int goldDroppedWhenKilled;
+    [SerializeField] GameEvent GoldChanged;
+    [SerializeField] IntVariable PlayerGold;
+
     [Header("DMG Multiplier: 0 = Immune, 1 = Normal, 2 = Weak")]
     [SerializeField] float FireVulnerability = 1;
     [SerializeField] float IceVulnerability = 1;
@@ -56,6 +60,8 @@ public class EnemyHealth : MonoBehaviour
         curHealth -= dmg;
         if(curHealth <= 0)
         {
+            PlayerGold.Value += goldDroppedWhenKilled;
+            GoldChanged.Raise();
             Destroy(gameObject);
         }
         barController.UpdateBarValue(curHealth, maxHealth);

@@ -5,19 +5,19 @@ using UnityEngine.UI;
 
 public class AbilityPoolDistributer : MonoBehaviour
 {
-    [SerializeField] IntVariable PlayerGold;
-    [SerializeField] IntReference RerollCost;
-    [SerializeField] GameEvent GoldChange;
+    [SerializeField] IntVariable PlayerGold = default;
+    [SerializeField] IntReference RerollCost = default;
+    [SerializeField] GameEvent GoldChange = default;
 
     [SerializeField] List<AbilityAdder> adders= new List<AbilityAdder>();
-    [SerializeField] Button rerollButton;
+    [SerializeField] Button rerollButton = null;
 
-    [SerializeField] TowerData abilityPoolBase;
-    AbilityPool abilityPool;
+    [SerializeField] TowerData abilityPoolBase = default;
+    AbilityPool abilityPool = default;
     private void Awake()
     {
         abilityPool = new AbilityPool(abilityPoolBase);
-        rerollButton.GetComponentInChildren<Text>().text = "Reroll\n" + RerollCost.Value;
+        rerollButton.GetComponentInChildren<Text>().text = ""+RerollCost.Value;
     }
     public void DistributeAbilities()
     {

@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public EnemyWalk ewalk;
     [HideInInspector] public EnemyHealth ehealth;
 
+    [SerializeField] Texture myIcon;
+
     [Header("OverheadParticleConfig")]
     [SerializeField] Vector3 particlePositionOffset = default;
 
@@ -20,6 +22,10 @@ public class Enemy : MonoBehaviour
     {
         ewalk = GetComponent<EnemyWalk>();
         ehealth = GetComponent<EnemyHealth>();
+    }
+    public Texture GetEnemyIcon()
+    {
+        return myIcon;
     }
 
     public Vector3 GetParticleOffset()

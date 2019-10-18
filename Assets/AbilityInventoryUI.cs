@@ -5,11 +5,12 @@ using UnityEngine.UI;
 
 public class AbilityInventoryUI : MonoBehaviour
 {
-    [SerializeField] GameObject togglePrefab;
-    [SerializeField] TowerData towerGettingBuilt;
-    [SerializeField] TowerData inventoryOfAbilities;
-    private int heightGap;
-    private int width;
+    [SerializeField] GameObject togglePrefab = null;
+    [SerializeField] TowerData towerGettingBuilt = null;
+    [SerializeField] TowerData inventoryOfAbilities = null;
+    [SerializeField] GameObject content = null;
+    private int heightGap = default;
+    private int width = default; 
 
     List<GameObject> myToggles = new List<GameObject>();
 
@@ -17,8 +18,6 @@ public class AbilityInventoryUI : MonoBehaviour
     {
         inventoryOfAbilities.myAbilities.Clear();
         towerGettingBuilt.myAbilities.Clear();
-        heightGap = (int)togglePrefab.GetComponent<RectTransform>().rect.height;
-        width = (int)togglePrefab.GetComponent<RectTransform>().rect.width;
         UpdateUI();
     }
     public void UpdateTowerInventory()
@@ -33,20 +32,19 @@ public class AbilityInventoryUI : MonoBehaviour
     {
         foreach (GameObject go in myToggles)
             Destroy(go);
+        myToggles.Clear();
 
-        int count = 0;
-        foreach(TowerAbility ta in inventoryOfAbilities.myAbilities)
+        for(int i = 0; i < inventoryOfAbilities.myAbilities.Count; i++)
         {
             GameObject go = Instantiate(togglePrefab);
-            go.GetComponent<TowerSelector>().abilitiesToAdd.Add(ta);
-            go.transform.SetParent(gameObject.transform);
-
-            Toggle curToggle = go.GetComponent<Toggle>();
-            curToggle.GetComponentInChildren<Text>().text = ta.GetDescription();
-            curToggle.GetComponent<RectTransform>().anchoredPosition = new Vector3(-0f*width, -1 * heightGap * count -100, 0);
-            count++;
+            go.transform.SetParent(content.transform);
+            go.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -50 * i - 25);
+            TowerSelector ts = go.GetComponent<TowerSelector>();
+            ts.SetImage(inventoryOfAbilities.myAbilities[i].GetIcon());
+            ts.abilitiesToAdd.Add(inventoryOfAbilities.myAbilities[i]);
             myToggles.Add(go);
         }
+
     }
 
 }

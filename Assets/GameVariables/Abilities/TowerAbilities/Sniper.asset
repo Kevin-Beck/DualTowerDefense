@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Sniper
   m_EditorClassIdentifier: 
   abilityEffects:
-  - {fileID: 11400000, guid: 1719945657e48944f9071b7202d66530, type: 2}
   - {fileID: 11400000, guid: f9d24a1af5dedc140a8b8da6a4297757, type: 2}
   - {fileID: 11400000, guid: e3d6683bc95a75141a37635ad17fed95, type: 2}
   description: Sniper
-  cost: 16
+  myIcon: {fileID: 21300000, guid: fb20d0c8b5213544782b51241a5821a0, type: 3}
+  cost: 15

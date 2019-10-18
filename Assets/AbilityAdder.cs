@@ -5,20 +5,22 @@ using UnityEngine.UI;
 
 public class AbilityAdder : MonoBehaviour
 {
-    [SerializeField] TowerData InventoryObject;
-    [SerializeField] IntVariable PlayerGold;
-    [SerializeField] GameEvent GoldChange;
+    [SerializeField] TowerData InventoryObject = default;
+    [SerializeField] IntVariable PlayerGold = default;
+    [SerializeField] GameEvent GoldChange = default;
 
-    TowerAbility myAbility;
-    [SerializeField] GameEvent abilityPurchased;
+    TowerAbility myAbility = default;
+    [SerializeField] GameEvent abilityPurchased = default;
 
     Button myButton;
+    Sprite baseSprite;
     Text buttonText;
 
     private void Awake()
     {
         myButton = GetComponent<Button>();
         buttonText = myButton.GetComponentInChildren<Text>();
+        baseSprite = myButton.GetComponent<Image>().sprite;
     }
 
     public void AddAbilityToInventory()
@@ -33,7 +35,7 @@ public class AbilityAdder : MonoBehaviour
                 PlayerGold.Value -= myAbility.GetCost();
                 GoldChange.Raise();
                 abilityPurchased.Raise();
-
+                myButton.GetComponent<Image>().sprite = baseSprite;
                 myAbility = null;
             }
         }
@@ -43,6 +45,7 @@ public class AbilityAdder : MonoBehaviour
         myAbility = ta;
         if(myAbility != null)
         {
+            myButton.GetComponent<Image>().sprite = ta.GetIcon();
             myButton.enabled = true;
             buttonText.text = myAbility.GetDescription() + "\n" + myAbility.GetCost();
         }else

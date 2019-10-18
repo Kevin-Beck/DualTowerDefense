@@ -17,4 +17,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 94bf1ff9d77609e4da79412124d34d70, type: 2}
   - {fileID: 11400000, guid: 3d3b7acacaa4b6444b05575ddde84bea, type: 2}
   description: Fire Ping
+  myIcon: {fileID: 21300000, guid: 12306a6aed80af64e99db2fda555b331, type: 3}
   cost: 8

@@ -10,8 +10,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Slow", menuName = "Effect/Impact/Slow")]
 public class Slow : ImpactEffect
 {
-    [SerializeField] private string description;
-    [SerializeField] private EffectType myType;
+    [SerializeField] private string description = "Chance to slow enmy on hit";
+    [SerializeField] private EffectType myType = default;
     /// <summary>
     /// ParticleEffect tied to the effect.
     /// </summary>

@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 20
-  goldDroppedWhenKilled: 1
+  goldDroppedWhenKilled: 2
   GoldChanged: {fileID: 11400000, guid: e6c475d2f4ceb9644a05071c5bb47112, type: 2}
   PlayerGold: {fileID: 11400000, guid: 3cafd9d099624294a90be64f855cf084, type: 2}
   FireVulnerability: 1
@@ -132,6 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ewalk: {fileID: 0}
   ehealth: {fileID: 0}
+  myIcon: {fileID: 2800000, guid: 6c4dbe6576b85bb49a0e669781ad3ffa, type: 3}
   particlePositionOffset: {x: 0, y: 2, z: 0}
 --- !u!114 &1337622363416373281
 MonoBehaviour:

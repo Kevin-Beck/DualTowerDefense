@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class GoldUpdater : MonoBehaviour
 {
-    [SerializeField] IntVariable playerGold;
-    [SerializeField] IntReference StartingGold;
+    [SerializeField] IntVariable playerGold = default;
+    [SerializeField] IntReference StartingGold = default;
     Text myText;
 
     private void Awake()

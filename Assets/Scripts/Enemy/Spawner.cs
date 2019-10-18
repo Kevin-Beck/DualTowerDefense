@@ -10,14 +10,20 @@ public class Spawner : MonoBehaviour
 
     private int waveIndex = 0;
 
-    public ThingRuntimeSet currentEnemies;    
+    public ThingRuntimeSet currentEnemies;
+    [SerializeField] GameEvent EnemySpawned;
 
     public void DestroyAllEnemies()
     {
         foreach (Thing enemy in currentEnemies.Items.ToArray())
             Destroy(enemy.gameObject);
     }
-
+    public Wave GetNextWaveData()
+    {
+        if (waveIndex >= Waves.Count)
+            return null;
+        return Waves[waveIndex];
+    }
     public void SpawnNextWave()
     {
         if (waveIndex >= Waves.Count)
@@ -41,6 +47,7 @@ public class Spawner : MonoBehaviour
             for (int k = 0; k < es.GetEnemyCount(); k++)
             {
                 SpawnEnemy(es.GetEnemy());
+                EnemySpawned.Raise();
                 yield return new WaitForSeconds(Waves[waveIndex].sequences[i].GetSpawnPace());
             }
         }

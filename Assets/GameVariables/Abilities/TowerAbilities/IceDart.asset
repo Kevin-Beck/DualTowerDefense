@@ -16,4 +16,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 47d4e656aa7e18d4b9106fc428893fc4, type: 2}
   - {fileID: 11400000, guid: a7c03b6cba6041e4ab9ca8750cc31193, type: 2}
   description: Ice Dart
-  cost: 15
+  myIcon: {fileID: 21300000, guid: ea08526f52f94e142aaaf8fba8b5b653, type: 3}
+  cost: 12

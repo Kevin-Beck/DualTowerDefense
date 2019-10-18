@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class TowerSelector : MonoBehaviour
 {
     Toggle myToggle;
+    [SerializeField] Image myImage;
     public TowerData curTower;
     [SerializeField] public List<TowerAbility> abilitiesToAdd = new List<TowerAbility>();
 
@@ -14,6 +15,10 @@ public class TowerSelector : MonoBehaviour
         myToggle = GetComponent<Toggle>();
     }
 
+    public void SetImage(Sprite s)
+    {
+        myImage.sprite = s;
+    }
     public void UpdateStatus()
     {
         if (myToggle.isOn)

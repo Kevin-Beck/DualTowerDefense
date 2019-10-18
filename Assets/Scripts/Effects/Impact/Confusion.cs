@@ -10,8 +10,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Confusion", menuName = "Effect/Impact/Confusion")]
 public class Confusion : ImpactEffect
 {
-    [SerializeField] private string description;
-    [SerializeField] private EffectType myType;
+    [SerializeField] private string description = "Chance to reverse enemy.";
+    [SerializeField] private EffectType myType = default;
     /// <summary>
     /// ParticleEffect tied to the effect.
     /// </summary>
@@ -37,7 +37,7 @@ public class Confusion : ImpactEffect
 
     public override string GetDescription()
     {
-        throw new System.NotImplementedException();
+        return description;
     }
 
     public override EffectType GetEffectType()

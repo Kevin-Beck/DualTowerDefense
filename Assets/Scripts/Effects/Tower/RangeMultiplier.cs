@@ -9,16 +9,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New RangeMultiplier", menuName = "Effect/Tower/RangeMultiplier")]
 public class RangeMultiplier : TowerEffect
 {
-    [SerializeField] private string description;
-    [SerializeField] private EffectType myType;
+    [SerializeField] private string description = "Alters the range of the tower.";
+    [SerializeField] private EffectType myType = default;
     /// <summary>
     /// ParticleEffect tied to the effect.
     /// </summary>
 
-    [SerializeField] private GameObject towerParticles;
-
-    [Header("Particle Data")]
-    [SerializeField] private GameObject muzzleParticles = default;
+    [Header("Tower Particle Effect")]
+    [SerializeField] private GameObject towerParticles = default;
 
     [Header("Range Data")]
     [SerializeField] private float rangeMultiplier = 3;
@@ -30,12 +28,12 @@ public class RangeMultiplier : TowerEffect
 
     public override string GetDescription()
     {
-        throw new System.NotImplementedException();
+        return description;
     }
 
     public override EffectType GetEffectType()
     {
-        throw new System.NotImplementedException();
+        return myType;
     }
 
     public override GameObject GetTowerParticles()

@@ -59,7 +59,7 @@ public class BoardNode : MonoBehaviour
     /// </summary>
     public TowerData towerToBuild;
     
-    [SerializeField] GameEvent TowerConstructed;
+    [SerializeField] GameEvent TowerConstructed = default;
 
     /// <summary>
     /// Renderer and MaterialPropertyBlock are assigned, and the base color is added to the tile.

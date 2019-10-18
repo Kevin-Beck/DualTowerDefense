@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PoisonDot 4 ticks 1 dmg
   m_EditorClassIdentifier: 
   description: 
-  myType: 2
+  myType: 3
   impactParticles: {fileID: 1897973106226258, guid: de0ee17e75b1b4448adcc9399db914dd,
     type: 3}
   numberOfTicks: 4

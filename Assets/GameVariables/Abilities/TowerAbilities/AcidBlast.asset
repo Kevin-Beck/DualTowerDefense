@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f497f94468515146a8f7cc73a8398b0, type: 3}
+  m_Name: AcidBlast
+  m_EditorClassIdentifier: 
+  abilityEffects:
+  - {fileID: 11400000, guid: 00af1285eccb4f248936d751a5fb1d2f, type: 2}
+  - {fileID: 11400000, guid: 1719945657e48944f9071b7202d66530, type: 2}
+  description: Acid Blast
+  myIcon: {fileID: 21300000, guid: 75e7ca0469c8fbb4f9c270bc4f0a4358, type: 3}
+  cost: 10

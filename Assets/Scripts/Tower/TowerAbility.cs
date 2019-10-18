@@ -8,8 +8,9 @@ public class TowerAbility : ScriptableObject
 {
     [SerializeField] public List<Effect> abilityEffects;
     [SerializeField] private int level { get; set; }
-    [SerializeField] private string description;
-    [SerializeField] private int cost;
+    [SerializeField] private string description = "TowerAbility";
+    [SerializeField] private Sprite myIcon;
+    [SerializeField] private int cost = 10;
 
     public List<Effect> GetEffects()
     {
@@ -22,5 +23,9 @@ public class TowerAbility : ScriptableObject
     public int GetCost()
     {
         return cost;
+    }
+    public Sprite GetIcon()
+    {
+        return myIcon;
     }
 }

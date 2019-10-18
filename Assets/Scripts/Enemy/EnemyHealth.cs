@@ -7,9 +7,9 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] float maxHealth = default;
     float curHealth;
 
-    [SerializeField] int goldDroppedWhenKilled;
-    [SerializeField] GameEvent GoldChanged;
-    [SerializeField] IntVariable PlayerGold;
+    [SerializeField] int goldDroppedWhenKilled = default;
+    [SerializeField] GameEvent GoldChanged = default;
+    [SerializeField] IntVariable PlayerGold = default;
 
     [Header("DMG Multiplier: 0 = Immune, 1 = Normal, 2 = Weak")]
     [SerializeField] float FireVulnerability = 1;
@@ -28,7 +28,7 @@ public class EnemyHealth : MonoBehaviour
     }
     private void Start()
     {
-        curHealth = maxHealth;
+        curHealth = maxHealth; 
     }
     public void TakeDamage(float dmg, EffectType type, GameObject particles)
     {

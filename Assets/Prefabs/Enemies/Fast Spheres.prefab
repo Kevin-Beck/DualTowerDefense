@@ -231,6 +231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ewalk: {fileID: 0}
   ehealth: {fileID: 0}
+  myIcon: {fileID: 2800000, guid: 221b9e0558ddaf945ba03384d480bf47, type: 3}
   particlePositionOffset: {x: 0, y: 2, z: 0}
 --- !u!114 &7453294726428719662
 MonoBehaviour:

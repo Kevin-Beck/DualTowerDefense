@@ -9,8 +9,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Impact Damage", menuName = "Effect/Impact/ImpactDamage")]
 public class ImpactDamage : ImpactEffect
 {
-    [SerializeField] private string description;
-    [SerializeField] private EffectType myType;
+    [SerializeField] private string description = "Damages enemy on impact.";
+    [SerializeField] private EffectType myType = default;
     /// <summary>
     /// ParticleEffect tied to the effect.
     /// </summary>

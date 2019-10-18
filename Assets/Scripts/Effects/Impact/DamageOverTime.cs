@@ -9,8 +9,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New DamageOverTime", menuName = "Effect/Impact/DamageOverTime")]
 public class DamageOverTime : ImpactEffect
 {
-    [SerializeField] private string description;
-    [SerializeField] private EffectType myType;
+    [SerializeField] private string description = "Damages enemy over time.";
+    [SerializeField] private EffectType myType = default;
     /// <summary>
     /// ParticleEffect tied to the effect.
     /// </summary>

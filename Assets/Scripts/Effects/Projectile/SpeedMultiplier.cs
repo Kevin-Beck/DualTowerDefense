@@ -9,8 +9,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Bullet Speed", menuName = "Effect/Projectile/SpeedMultiplier")]
 public class SpeedMultiplier : ProjectileEffect
 {
-    [SerializeField] private string description;
-    [SerializeField] private EffectType myType;
+    [SerializeField] private string description = "Alters speed bullet travels.";
+    [SerializeField] private EffectType myType = default;
     /// <summary>
     /// ParticleEffect tied to the effect.
     /// </summary>

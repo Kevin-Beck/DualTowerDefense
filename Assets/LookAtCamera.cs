@@ -14,6 +14,10 @@ public class LookAtCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(mainCamera.transform);
+        var lookPos = mainCamera.transform.position;
+        lookPos.x = 0;
+        lookPos.z = 0;
+        var rotation = Quaternion.LookRotation(lookPos);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 1000f);
     }
 }

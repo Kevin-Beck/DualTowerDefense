@@ -23,7 +23,7 @@ public class DamageOverTime : ImpactEffect
     [SerializeField] private float tickDamage = default;
     [SerializeField] private float tickDelay = default;
     
-    public override void ApplyProjectileEffect(Enemy e)
+    public override void ApplyProjectileEffect(AnimatedEnemy e)
     {
         e.ehealth.TakeDamageOverTime(numberOfTicks, tickDamage, myType, tickDelay, tickParticles);
     }

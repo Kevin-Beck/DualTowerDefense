@@ -23,15 +23,14 @@ public class PolyProjectile : MonoBehaviour
     /// Target transform the bullet moves towards each update.
     /// </summary>
     Transform target;
+    Vector3 targetHeight;
     /// <summary>
     /// List of Effects given to this bullet from its tower.
     /// </summary>
     public List<Effect> myEffects = new List<Effect>();
 
-
     [Header("Adjust for collision distance")]
     public float colliderRadius = 1.25f;
-
 
     void Start()
     {
@@ -71,27 +70,26 @@ public class PolyProjectile : MonoBehaviour
         }
     }
 
-    void Update()
+    private void Update()
     {
         if (target == null)
         {
             Destroy(gameObject);
             return;
         }
-        Vector3 dir = target.position - transform.position;
+        Vector3 dir = target.position + targetHeight - transform.position;
         float distanceThisFrame = speed * Time.deltaTime;
 
         // detect if we're collided
-        if ((target.position - transform.position).magnitude < colliderRadius)
+        if ((target.position + targetHeight- transform.position).magnitude < colliderRadius)
         {
             HitTarget();
             return;
         }
-
         transform.Translate(dir.normalized * distanceThisFrame, Space.World);
     }
-    
-       
+
+
     /// <summary>
     /// HitTarget instantiates the particle effect, calls ApplyEffect, then destroys the particle effect after 2 seconds
     /// then self destructs.
@@ -121,7 +119,7 @@ public class PolyProjectile : MonoBehaviour
     /// </summary>
     void ApplyEffect()
     {
-        Enemy nme = target.gameObject.GetComponent<Enemy>();
+        AnimatedEnemy nme = target.gameObject.GetComponent<AnimatedEnemy>();
         foreach (Effect e in myEffects)
         {
             if(e is ImpactEffect)
@@ -136,6 +134,7 @@ public class PolyProjectile : MonoBehaviour
     public void Seek(Transform _target)
     {
         target = _target;
+        targetHeight = target.gameObject.GetComponent<AnimatedEnemy>().GetHeight();
     }
     /// <summary>
     /// Destroys the muzzle particles created when this projectile was born after specified time

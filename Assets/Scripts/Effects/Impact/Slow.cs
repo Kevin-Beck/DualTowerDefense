@@ -24,12 +24,12 @@ public class Slow : ImpactEffect
     [SerializeField] private float slowChance = 0.2f;
     [SerializeField] private float slowIntensity = 0.25f;
     
-    public override void ApplyProjectileEffect(Enemy e)
+    public override void ApplyProjectileEffect(AnimatedEnemy e)
     {
         if (Random.Range(0f, 1f) < slowChance)
         {
             e.ewalk.Slow(timeSlowed, slowIntensity);
-            GameObject go = Instantiate(effectParticle, e.gameObject.transform.position + e.GetParticleOffset(), e.gameObject.transform.rotation);
+            GameObject go = Instantiate(effectParticle, e.gameObject.transform.position + e.GetOverheadOffset(), e.gameObject.transform.rotation);
             go.transform.parent = e.gameObject.transform;
             Destroy(go, timeSlowed);
         }

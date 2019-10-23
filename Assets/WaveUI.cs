@@ -44,20 +44,20 @@ public class WaveUI : MonoBehaviour
             go.GetComponent<RectTransform>().anchoredPosition = new Vector3(50, -80 * i -40);
             WaveImageController wic = go.GetComponent<WaveImageController>();
             wic.SetCount(nextWave.sequences[i].GetEnemyCount());
-            wic.SetImage(nextWave.sequences[i].GetEnemy().GetComponent<Enemy>().GetEnemyIcon());
+            wic.SetImage(nextWave.sequences[i].GetEnemy().GetComponent<AnimatedEnemy>().GetEnemyIcon());
             myWics.Add(wic);
         }
     }
-    private void Update()
+    private void FixedUpdate()
     {
-        /*
+        
         if (shift)
         {
             contentFrame.anchoredPosition = Vector2.Lerp(contentFrame.anchoredPosition, shiftTarget, Time.deltaTime);
             if (Vector2.SqrMagnitude(contentFrame.anchoredPosition - shiftTarget) < 5f)
                 DisableShift();
         }
-        */
+        
     }
     private void EnableShift()
     {
@@ -90,11 +90,6 @@ public class WaveUI : MonoBehaviour
 
     public void GenerateNextWaveImages()
     {
-        StartCoroutine(DrawNextWave());
-    }
-    IEnumerator DrawNextWave()
-    {
-        yield return new WaitForSeconds(5);
         ClearWaveImages();
         GetNextWaveData();
         if(nextWave != null)

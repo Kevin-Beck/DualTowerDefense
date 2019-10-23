@@ -2104,7 +2104,7 @@ GameObject:
   - component: {fileID: 988400768}
   - component: {fileID: 988400767}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: MazeUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3445,8 +3445,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687258581}
-  m_LocalRotation: {x: -0.60876137, y: 0, z: -0, w: -0.7933534}
-  m_LocalPosition: {x: 25, y: 90, z: -9}
+  m_LocalRotation: {x: 0.34945655, y: -0.006170307, z: 0.0022964096, w: 0.93692946}
+  m_LocalPosition: {x: 12.530541, y: 15.075836, z: -3.885756}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3841,6 +3841,7 @@ GameObject:
   - component: {fileID: 1759238138}
   - component: {fileID: 1759238137}
   - component: {fileID: 1759238139}
+  - component: {fileID: 1759238140}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -3862,15 +3863,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WaveCompleted: {fileID: 11400000, guid: a78d98af4269947488c1be4d42e87b84, type: 2}
   Waves:
-  - {fileID: 11400000, guid: e2b22464f7dc10647a16546a84cfdbc5, type: 2}
-  - {fileID: 11400000, guid: bf17b9bfe4e4f1949aa681ae924458c7, type: 2}
-  - {fileID: 11400000, guid: 0863d382174890349812da02b108bcee, type: 2}
-  - {fileID: 11400000, guid: e9c7ae3ece44b8143b7a8349c560bc83, type: 2}
-  - {fileID: 11400000, guid: 7a1fc07e389beb24f8d80b0e9340a24b, type: 2}
-  - {fileID: 11400000, guid: 0af1f51bbb7494a4ca32a0a7ed0e8663, type: 2}
-  - {fileID: 11400000, guid: 12e3691439b17fb479b17d81a890bc5f, type: 2}
-  - {fileID: 11400000, guid: afff0af932b0816448778566c8c7362d, type: 2}
-  - {fileID: 11400000, guid: 67a3ce0c57bd15747bdbaa4bd1afdf7b, type: 2}
+  - {fileID: 11400000, guid: f02167ee9a6cfc24ea95eec21516aacc, type: 2}
+  - {fileID: 11400000, guid: f73158b74dec7b84581bc0543211a737, type: 2}
+  - {fileID: 11400000, guid: 7d8160c077c2a924092ce3677676f187, type: 2}
   start:
     UseConstant: 0
     ConstantValue:
@@ -3911,6 +3906,35 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1759238137}
         m_MethodName: SpawnNextWave
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &1759238140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759238136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c968a626da1793540a61094d00513764, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 0aa62cc9b8b6b7f4b8015cf43e4842ed, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1759238137}
+        m_MethodName: CheckForWaveCompletion
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4372,6 +4396,7 @@ GameObject:
   - component: {fileID: 1836197128}
   - component: {fileID: 1836197129}
   - component: {fileID: 1836197130}
+  - component: {fileID: 1836197131}
   m_Layer: 5
   m_Name: WaveUI
   m_TagString: Untagged
@@ -4510,6 +4535,35 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1836197130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1836197123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c968a626da1793540a61094d00513764, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: a78d98af4269947488c1be4d42e87b84, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1836197128}
+        m_MethodName: GenerateNextWaveImages
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &1836197131
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

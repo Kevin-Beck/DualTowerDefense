@@ -10,7 +10,10 @@ public class Thing : MonoBehaviour
     {
         RuntimeSet.Add(this);
     }
-
+    public void RemoveMe()
+    {
+        RuntimeSet.Remove(this);
+    }
     private void OnDisable()
     {
         RuntimeSet.Remove(this);

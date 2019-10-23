@@ -4,6 +4,6 @@ using UnityEngine;
 
 public abstract class ImpactEffect : Effect
 {
-    abstract public void ApplyProjectileEffect(Enemy e); // used to add stuff to the enemy upon hitting etc
+    abstract public void ApplyProjectileEffect(AnimatedEnemy e); // used to add stuff to the enemy upon hitting etc
     abstract public GameObject GetImpactParticles();
 }

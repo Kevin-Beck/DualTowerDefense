@@ -24,12 +24,12 @@ public class Confusion : ImpactEffect
     [SerializeField] private float confusionChance = 0.1f;
     
 
-    public override void ApplyProjectileEffect(Enemy e)
+    public override void ApplyProjectileEffect(AnimatedEnemy e)
     {
         if (Random.Range(0f, 1f) < confusionChance)
         {
             e.ewalk.Reverse(timeConfused);
-            GameObject go = Instantiate(effectParticle, e.gameObject.transform.position + e.GetParticleOffset(), e.gameObject.transform.rotation);
+            GameObject go = Instantiate(effectParticle, e.gameObject.transform.position + e.GetOverheadOffset(), e.gameObject.transform.rotation);
             go.transform.parent = e.gameObject.transform;
             Destroy(go, timeConfused);
         }

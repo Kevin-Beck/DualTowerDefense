@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f77e7f6923eae0042b7c026c168e49d6, type: 3}
+  m_Name: DK Blue 3
+  m_EditorClassIdentifier: 
+  description: Anim
+  enemyPrefab: {fileID: 199904, guid: 31f77ccd9316fee4597efe6d6c185a4d, type: 3}
+  enemyCount: 3
+  spawnPace: 2

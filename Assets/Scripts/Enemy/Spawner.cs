@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public GameEvent WaveCompleted;
+    [SerializeField] GameEvent WaveCompleted;
     [SerializeField] public List<Wave> Waves = new List<Wave>();
     public PositionReference start;
 
@@ -33,11 +33,16 @@ public class Spawner : MonoBehaviour
         }
         else
         {
-            StartCoroutine(SpawnWave());
-            
+            StartCoroutine(SpawnWave());            
         }
     }
-
+    public void CheckForWaveCompletion()
+    {
+        if(currentEnemies.Items.Count == 0) // TODO need this to only detect last enemy
+        {
+            WaveCompleted.Raise();
+        }
+    }
     IEnumerator SpawnWave()
     {
         for(int i = 0; i < Waves[waveIndex].sequences.Count; i++)
@@ -52,12 +57,11 @@ public class Spawner : MonoBehaviour
             }
         }
         waveIndex++;
-        WaveCompleted.Raise();
     }
 
     public void SpawnEnemy(GameObject enemyPrefab)
     {
-        GameObject go = Instantiate(enemyPrefab, new Vector3(start.Value.X * 4, 3, start.Value.Z * 4), Quaternion.identity);
+        GameObject go = Instantiate(enemyPrefab, new Vector3(start.Value.X * 4, 2, start.Value.Z * 4), Quaternion.identity);
         go.transform.parent = transform;
     }
 }

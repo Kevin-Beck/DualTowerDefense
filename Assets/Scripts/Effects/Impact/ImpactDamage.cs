@@ -19,7 +19,7 @@ public class ImpactDamage : ImpactEffect
     [SerializeField] private float damage = default;
     
     
-    public override void ApplyProjectileEffect(Enemy e)
+    public override void ApplyProjectileEffect(AnimatedEnemy e)
     {
         e.ehealth.TakeDamage(damage, myType, null);
     }
